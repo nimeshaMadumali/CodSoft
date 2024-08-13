@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        .{
+            padding: 0;
+            margin:0;
+            box-sizing:border-box;
+            text-decoration:none;
+            list-style: none;
+            scroll-behavior: smooth;
+            font-family: "Poppins", sans-serif;
+        }
+        :root{
+            --bg-color: #c4d9ef;
+            --second-bg-color: #5d76cd;
+            --text-color: #000000;
+            --second-color:#333;
+            --main-color:#E0115F;
+            --big-font: 5rem;
+            --h2-font: 3rem;
+            --p-font:1.1rem;
+        }
+        body{
+            background: var(--bg-color);
+            color: var(--text-color);
+            animation: transitionIn 0.75s;
+        }
+        .btn{
+            display: inline-block;
+            margin-top: 1rem;
+            border-radius:5rem;
+            background: white;
+            color: Blue;
+            padding:.9rem 3.5rem;
+            cursor:pointer;
+            font-size: 1.7rem;
+        }
+        .btn:hover{
+            background: #71706E;
+        }
+        header{
+                position: fixed;
+                width: 100%;
+                top: 0;
+                right:0;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: transparent;
+                padding: 22px 15%;
+                border-bottom: 1px solid transparent;
+                transition: all .45s ease;
+        }
+        .logo{
+            color: var(--text-color);
+            font-size: 60px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        span{
+            color: var(--main-color);
+        }
+
+        .navbar{
+            display: flex;
+        }
+        .navbar a{
+            color: var(--second-color);
+            font-size:30px;
+            font-weight:500;
+            margin:0 25px;
+            transition: all .45s ease;
+        }
+        .navbar a:hover{
+            color: #b41d1d;
+        }
+        .navbar a.active{
+            color: var(--main-color);
+        }
+        #menu-icon{
+            font-size: 50px;
+            color: var(--text-color);
+            z-index: 1000;
+            cursor: pointer;
+            margin-left: 25px;
+            display: none;
+        }
+        section{
+            padding: 160px 15% 120px;
+        }
+        .home{
+            position: relative;
+            height: 70.5vh;
+            width: 70%;
+            background-image: url(https://i.pinimg.com/originals/09/9b/bd/099bbd73fc3de56bf17529d34fa56436.jpg);
+            background-size: cover;
+            background-position: top;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .slide{
+            margin-bottom: 20px;
+        }
+        .one{
+            display: inline-block;
+            margin-right: 15px;
+            padding: 0 15px;
+            line-height: 70px;
+            font-size: 60px;
+            font-weight: 500;
+            border-radius: 15px;
+            background: var(--main-color);
+            color: var(--text-color);
+        }
+        .two{
+            display:inline-block;
+            color: var(--text-color);
+            font-size: 45px;
+            font-weight:500;
+            border-radius: 5px;
+            background: silver;
+        }
+        .home-text h1{
+            font-size: var(--big-font);
+            font-weight: 700;
+            color: var(--text-color);
+            line-height: 1.1;
+            margin: 0 0 8px;
+        }
+        .home-text h3{
+            color: var(--text-color);
+            margin:0 0 35px;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .home-text p{
+            color: black;
+            font-size: 1.5rem;
+            line-height: 0.2;
+            margin-bottom: 40px;
+        }
+
+        .about{
+            display: grid;
+            grid-template-column: repeat(2, 1fr);
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .about .column{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap:wrap;
+            padding: 2rem 0;
+            padding-bottom: 3rem;
+        }
+        .about .column image-container{
+            flex:1 1 40rem;
+            position: absolute;
+        }
+        body .about .column .image-container img{
+            width:500px;
+            box-shadow:0 .5rem 1rem rgba(.2,.2,.1,.1);
+            height:500px;
+            object-fit: cover;
+            float:left;
+            max-width:750px;
+            margin-right: 10px;
+            clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 40% 100%);
+        }
+        .about .column .content{
+            margin: 50px auto;
+            width:50%;
+        }
+        .about .column .content h2{
+            font-size: 3.5rem;
+            line-height:1;
+        }
+        .about .column .content h4{
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #000066;
+            line-height:2;
+            margin: 15px 0 30px;
+        }
+        .about .column .content p{
+            color: black;
+            font-size: 1.5rem;
+            font-family: time new roman;
+            line-height: 1.8;
+            margin-bottom: 4rem;
+            text-align: justify;
+        }
+        .skills{
+            display: grid;
+            grid-template-column: repeat(2, 1fr);
+            align-items: center;
+            gap: 1.5rem;
+            background-image: url(https://i.pinimg.com/originals/0e/39/c2/0e39c256714a4b7c0299323a82701647.jpg);
+            background-size:100% 100%;
+            z-index:-1;
+            background-filter:blur(5px);
+        }
+        .skills .column{
+            display: grid;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap:wrap;
+            padding: 2rem 0;
+            padding-bottom: 3rem;
+        }
+        .skills .column .image-container{
+            flex:1 1 40rem;
+            position: relative;
+        }
+        .skills .column .image-container img{
+            width:50%;
+            border:.5rem solid #333;
+            border-radius: .3rem;
+            box-shadow:0 .5rem 1rem rgba(.2,.2,.1,.1);
+            height: 50%;
+            object-fit: cover;
+            float:right;
+
+        }
+        .skills .column .content{
+            margin: 10px auto;
+            width:50%;
+            position:absolute;
+
+        }
+        .skills .column .content h2{
+            font-size: 5.75rem;
+            line-height:1;
+            color:#ffff00;
+            -webkit-text-stroke: 2px red;
+        }
+        .skills .column .content ul{
+            font-size: 3rem;
+            font-weight: 400;
+            color: #fff700;
+            line-height:2;
+            margin: 15px 0 30px;
+            -webkit-text-stroke: 0.5px #fff;
+        }
+        .projects{
+            display: grid;
+            grid-template-column: repeat(2, 1fr);
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .projects .column{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap:wrap;
+            padding: 2rem 0;
+            padding-bottom: 3rem;
+        }
+        .projects .column .image-container{
+            flex:1 1 40rem;
+            position: relative;
+        }
+        .projects .column .image-container img{
+            width:70%;
+            border:.5rem solid #333;
+            border-radius: .3rem;
+            box-shadow:0 .5rem 1rem rgba(.2,.2,.1,.1);
+            height: 70%;
+            object-fit: cover;
+            float:center;
+        }
+        .projects .column .content{
+            margin: 40px;
+            width:50%;
+        }
+        .projects .column .content h1{
+            font-size:3rem;
+            line-height:2;
+        }
+        .projects .column .content p{
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            line-height:2;
+            margin: 15px 0 30px;
+        }
+        .projects .column .content ul{
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #333;
+            line-height:2;
+            margin: 15px 0 30px;
+        }
+        .resume{
+            display: grid;
+            grid-template-column: repeat(2, 1fr);
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .resume .column{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap:wrap;
+            padding: 2rem 0;
+            padding-bottom: 3rem;
+        }
+        .resume .column p1{
+            font-size: 3rem;
+            font-weight: 600;
+            color: #333;
+            line-height:2;
+            margin: 15px 0 30px;
+        }
+        .contact{
+            background-color:#333;
+            font-color:#fff;
+        }
+        .contact h1{
+            color:#fff;
+            font-size: 3.5rem;
+        }
+        .contact .row{
+            display: flex;
+            flex-wrap: wrap-reverse;
+            gap:1.5rem;
+            align-items: center;
+         }
+         .contact .row form{
+            flex:1 1 40rem;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+         }
+         .contact .row form .box{
+            padding:1rem;
+            font-size: 1.7rem;
+            color:#333;
+            text-transform:none;
+            border:.1rem solid rgba(0,0,0,.1);
+            border-radius:.5rem;
+            margin: .7rem 0;
+            width: 100%;
+         }
+         .contact .row form .box:focus{
+            border-color: black;
+         }
+         .contact .row form textarea{
+            height: 15rem;
+            resize: none;
+         }
+         .footer{
+            background-color:#333;
+         }
+         .footer .box-container{
+            display: flex;
+            flex-wrap:wrap;
+            gap:1.5rem;
+         }
+         .footer .box-container .box{
+            flex:1 1 25rem;
+         }
+         .footer .box-container .box h3{
+            color:#fff;
+            font-size:3.5rem;
+            padding:1rem 0;
+         }
+         .footer .box-container .box a{
+            display: block;
+            color:#fff;
+            font-size:2.5rem;
+            padding:1rem 0;
+         }
+         .footer .box-container .box a:hover{
+            color: yellow;
+            text-decoration: underline;
+         }
+         .footer .credit{
+            text-align: center;
+            padding:1.5rem;
+            margin-top:1.5rem;
+            padding-top:2.5rem;
+            font-size: 2rem;
+            color: #fff;
+            border-top: .1rem solid rgba(0,0,0,.1);
+         }
+         .footer .credit span{
+            color: yellow;
+         }
+
+         @keyframes transitionIn {
+            from{
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+         }
+
+       </style>
+</head>
+
+<header>
+    <a href="a" class="logo">Developer</a>
+    <ul class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+    </ul>
+    <div class="bx bx-menu" id="menu-icon"></div>
+</header>
+<body>
+    <section class="home" id="home">
+        <div class="home-text">
+            <div class="slide">
+                <span class="one">Hello</span>
+                <span class="two">I'm</span>
+            </div>
+            <h1>Nimesha Madhumalee</h1>
+            <h3> Fresh<span> Undergraduate.</span></h3>
+            <p>I,m recently undergraduate and having fresh knowledge </p>
+            <p>about the front end development. </p>
+            <div class="button">
+                <a href="a" class="btn">Hiring</a>
+            </div>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="column">
+
+            <div class="image-container">
+                <img src="https://i.pinimg.com/originals/09/9b/bd/099bbd73fc3de56bf17529d34fa56436.jpg" style="width:964x; height: 400px">
+            </div>
+
+            <div class="content">
+                <h2>About Me</h2>
+                <h4>Fresh Undergraduate</h4>
+                <p>As a fresh undergraduate, I possess a strong foundation in computational skills, including proficiency in programming languages such as Python, Java. My coursework and projects have equipped me with the ability to analyze data, develop algorithms, and solve complex problems using computational methods. Additionally, I have gained valuable experience in project management through group assignments and extracurricular activities, where I demonstrated effective communication, organization, and leadership skills. I am eager to apply my computational and management skills in real-world settings and continue to learn and grow in these areas.</p>
+                <a href="#" class="btn">More Info</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills" id="skills">
+        <div class="column">
+            <div class="image-container">
+                <img id="gify" src="https://user-images.githubusercontent.com/74038190/238353467-897cd757-ea1f-492d-aaf9-6d1674177e08.gif"></img>
+            </div>
+            <div class="content">
+                <h2>Key Skills</h2>
+                <ul>
+                    <li>HTML/CSS</li>
+                    <li>Javascript</li>
+                    <li>CSS Preprocessing</li>
+                    <li>Responsive Design</li>
+                    <li>Testing</li>
+                    <li>Interpersonal skills</li>
+                </ul>
+                <a href="#" class="btn">More Info</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="column">
+            <div class="image-container">
+                <img src="https://unbounce.com/photos/750-X-400-2x-mainpost-feature-2.jpg"></img>
+            </div>
+            <div class="content">
+                <h1>Landing Page</h1>
+                <p>The project to create a landing page for CodSoft's internship program. The primary goal of the project is to design a visually appealing and informative landing page that effectively communicates the key aspects of the internship program to potential applicants.</p>
+
+                <ul>
+                    <p2>Key feature of the page: </p2>
+                    <li>About the CodSoft company.</li>
+                    <li>Courses that conduct.</li>
+                    <li>Contact information.</li>
+                </ul>
+                <a href="#" class="btn">More Info</a>
+            </div>
+
+            <div class="image-container">
+                <img src="https://fastly.4sqi.net/img/general/600x600/23352828_SPjxz-POFbbobOSaCY2isOhld8Y03iS0YcbmTI-ab2o.jpg"></img>
+            </div>
+            <div class="content">
+                <h1>Management project at Helabojunhala</h1>
+                <p>The management teams at Helabojunhala recognizes the importance of providing a seamless and efficient shopping experience for customers. One of the key challenges faced by the store is long queues in front of the cashier, leading to customer dissatisfaction and potential revenue loss. To address this issue, a project has been initiated to optimize queue management and reduce wait times at the cashier.</p>
+                <a href="#" class="btn">More Info</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume" id="resume">
+        <div class="column">
+            <p1>Resume:</p1>
+            <a href="file:///C:/Users/USER/Downloads/Nime.pdf" download="Nime_cv.pdf" class="btn">Download CV</a>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h1 class="heading">Contact Us</h1>
+        <div class="row">
+            <form action="">
+                <input type="text" placeholder="name" class="box">
+                <input type="email" placeholder="email" class="box">
+                <input type="text" placeholder="courseName" class="box">
+                <textarea name="" class="box" placeholder="message" id="" cols="30" rows="10"></textarea>
+                <input type="submit" value="send message" class="btn">
+            </form>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Quick links</h3>
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Internships</a>
+                <a href="#">About Us</a>
+            </div>
+            <div class="box">
+                <h3>Policy</h3>
+                <a href="#">Privacy policy</a>
+                <a href="#">Refund policy</a>
+                <a href="#">Terms and conditions</a>
+            </div>
+            <div class="box">
+                <h3>Contact Info</h3>
+                <a href="#">0123-456-789</a>
+                <a href="#">nimesha@gmail.com</a>
+                <a href="#">Colombo, Sri Lanka</a>
+            </div>
+        </div>
+        <div class="credit">&copy;all right reserved | created by <span>Madhumalee</span></div>
+    </section>
+
+</body>
+</html>
